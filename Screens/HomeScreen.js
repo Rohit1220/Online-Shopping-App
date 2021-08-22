@@ -6,16 +6,30 @@ import {
   Text,
   Image,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 
 export default class HomeScreen extends React.Component {
-  search(text){
+  constructor(){
+    super();
+    this.state = {
+      ProductName:'',
+      ProductType:[],
+      ProductDescription:[],
+      productScreen:[],
+    }
+  }
+  search(text){ 
     
   }
   render() {
     return (
+      <ScrollView>
       <View style = {styles.AllProducts}>
-        <TextInput placeholder="Search" style = {styles.SearchBox} />
+        <TextInput onChangeText={text => {
+            this.setState({ ProductName: text });
+          }}
+          value={this.state.ProductName} placeholder="Search" style = {styles.SearchBox} />
         <TouchableOpacity style = {styles.SearchButton}>
           <Image
             source={require('../assets/search.png')}
@@ -309,6 +323,7 @@ export default class HomeScreen extends React.Component {
           </TouchableOpacity>
         </View>
       </View>
+      </ScrollView>
     );
   }
 }
@@ -321,7 +336,6 @@ const styles = StyleSheet.create({
     borderColor:'red',
     borderRadius:10,
     borderWidth:10,
-    flex:1,
     flexDirection:'column',
     width:'100%',
   },
@@ -332,7 +346,6 @@ const styles = StyleSheet.create({
     borderRadius:10,
     borderWidth:10,
     flexDirection:'column',
-    flex:1,
     height:10,
     width:'100%',
   },
@@ -342,7 +355,6 @@ const styles = StyleSheet.create({
     borderColor:'red',
     borderRadius:10,
     borderWidth:10,
-    flex:1,
     flexDirection:'column',
     padding:10,
   },
@@ -353,14 +365,12 @@ const styles = StyleSheet.create({
     borderRadius:10,
     borderWidth:10,
     color:'red',
-    flex:1,
     flexDirection:'column',
     fontSize:10,
     fontWeight:'bold',
     width:'100%',
   },
   Image:{
-    flex:1,
     flexDirection:'column',
     height:100,
     margin:10,
@@ -373,16 +383,14 @@ const styles = StyleSheet.create({
     borderColor:'red',
     borderRadius:10,
     borderWidth:10,
-    flex:1,
     flexDirection:'column',
     justifyContent:'center',
   },
   ProductName:{
     alignSelf:'center',
     color:'red',
-    flex:1,
     flexDirection:'column',
     fontSize:10,
     fontWeight:'bold',
   },
-});
+}); 
